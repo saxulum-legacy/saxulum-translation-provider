@@ -11,6 +11,7 @@ class TranslationProviderTest extends \PHPUnit_Framework_TestCase
     public function testTranslations()
     {
         $app = new Application();
+        $app['debug'] = true;
         $app['locale'] = 'en';
 
         $app->register(new TranslationServiceProvider());
