@@ -20,7 +20,7 @@ class TranslationProvider
         });
 
         $container['translator'] = $container->share($container->extend('translator',
-            function(Translator $translator) use ($container) {
+            function (Translator $translator) use ($container) {
 
                 if (!is_null($container['translation_cache'])) {
                     if (!is_null($container['translation_cache']) && !is_dir($container['translation_cache'])) {
@@ -51,7 +51,7 @@ class TranslationProvider
 
         $container['translation_search'] = $container->protect(function () use ($container) {
             $translationMap = array();
-            foreach($container['translation_paths'] as $path) {
+            foreach ($container['translation_paths'] as $path) {
                 foreach (Finder::create()->files()->name('*.yml')->in($path) as $file) {
                     /** @var SplFileInfo $file */
                     $domainAndLocale = explode('.', $file->getBasename('.yml'));
