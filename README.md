@@ -50,6 +50,8 @@ use Silex\Provider\TranslationServiceProvider;
 $app->register(new TranslationServiceProvider());
 $app->register(new TranslationProvider());
 ```
+Usage
+-----
 
 ### Add the translation paths
 

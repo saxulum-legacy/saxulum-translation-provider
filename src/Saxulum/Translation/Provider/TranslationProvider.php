@@ -29,13 +29,12 @@ class TranslationProvider
 
                     $cacheFile = $container['translation_cache'] . '/saxulum-translation.php';
                     if ($container['debug'] || !file_exists($cacheFile)) {
-
-
                         file_put_contents(
                             $cacheFile,
                             '<?php return ' . var_export($container['translation_search'](), true) . ';'
                         );
                     }
+
                     $translationMap = require($cacheFile);
                 } else {
                     $translationMap = $container['translation_search']();
