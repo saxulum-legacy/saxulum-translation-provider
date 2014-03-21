@@ -6,6 +6,7 @@ saxulum-translation-provider
 [![Build Status](https://api.travis-ci.org/saxulum/saxulum-translation-provider.png?branch=master)](https://travis-ci.org/saxulum/saxulum-translation-provider)
 [![Total Downloads](https://poser.pugx.org/saxulum/saxulum-translation-provider/downloads.png)](https://packagist.org/packages/saxulum/saxulum-translation-provider)
 [![Latest Stable Version](https://poser.pugx.org/saxulum/saxulum-translation-provider/v/stable.png)](https://packagist.org/packages/saxulum/saxulum-translation-provider)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/saxulum/saxulum-translation-provider/badges/quality-score.png?s=4529e17d24e0d36aa71782cf39b37e56dd423a8b)](https://scrutinizer-ci.com/g/saxulum/saxulum-translation-provider/)
 
 Features
 --------
