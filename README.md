@@ -63,9 +63,11 @@ There is the [silex][2] ones as an example.
 
 ```{.php}
 use Saxulum\Translation\Cilex\Provider\TranslationProvider;
-use My\BaseTranslation\Provider\TranslationServiceProvider;
 
-$app->register(new TranslationServiceProvider());
+$app['translator'] = $app->share(function(){
+    return new Translator;
+});
+
 $app->register(new TranslationProvider(), array(
     'translation_cache' => '/path/to/cache'
 ));
@@ -78,9 +80,11 @@ $app->register(new TranslationProvider(), array(
 
 ```{.php}
 use Saxulum\Translation\Cilex\Provider\TranslationProvider;
-use My\BaseTranslation\Provider\TranslationServiceProvider;
 
-$app->register(new TranslationServiceProvider());
+$app['translator'] = $app->share(function(){
+    return new Translator;
+});
+
 $app->register(new TranslationProvider());
 ```
 
