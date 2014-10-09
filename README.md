@@ -73,12 +73,11 @@ Usage
 ### Add the translation paths
 
 ```{.php}
-$app['translation_paths'] = $app->share($app->extend('translation_paths', function ($paths) {
+$container['translation_paths'] = $container->extend('translation_paths', function ($paths) {
     $paths[] = '/path/to/the/translations';
 
     return $paths;
-}));
+});
 ```
 
 [1]: https://packagist.org/packages/saxulum/saxulum-translation-provider
-[2]: https://github.com/silexphp/Silex/blob/1.2/src/Silex/Provider/TranslationServiceProvider.php
