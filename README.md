@@ -27,15 +27,15 @@ Installation
 
 Through [Composer](http://getcomposer.org) as [saxulum/saxulum-translation-provider][1].
 
-### Preparation (for non silex users)
+#### Preparation (for non silex users)
 
-#### Debug value is needed
+##### Debug value is needed
 
 ```{.php}
 $container['debug'] = true; // or false
 ```
 
-#### Define translator service
+##### Define translator service
 
 ```{.php}
 $container['translator'] = function () {
@@ -43,9 +43,9 @@ $container['translator'] = function () {
 };
 ```
 
-### For all users
+#### For all users
 
-#### With translation cache (faster)
+##### With translation cache (faster)
 
 ```{.php}
 use Saxulum\Translation\Silex\Provider\TranslationProvider;
@@ -58,7 +58,7 @@ $container->register(new TranslationProvider(), array(
 * `debug == true`: the cache file will be build at each load
 * `debug == false`: the cache file will be build if not exists, delete it if its out of sync
 
-#### Without translation cache (slower)
+##### Without translation cache (slower)
 
 ```{.php}
 use Saxulum\Translation\Silex\Provider\TranslationProvider;
