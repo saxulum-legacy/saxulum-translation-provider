@@ -63,14 +63,14 @@ $container->register(new TranslationProvider(), array(
 ```{.php}
 use Saxulum\Translation\Silex\Provider\TranslationProvider;
 
-$app->register(new TranslationProvider());
+$container->register(new TranslationProvider());
 ```
 
 
 Usage
 -----
 
-### Add the translation paths
+#### Add the translation paths
 
 ```{.php}
 $container['translation_paths'] = $container->extend('translation_paths', function ($paths) {
