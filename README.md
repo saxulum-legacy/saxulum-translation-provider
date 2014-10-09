@@ -27,16 +27,30 @@ Installation
 
 Through [Composer](http://getcomposer.org) as [saxulum/saxulum-translation-provider][1].
 
-## Silex
+### Preparation (for non silex users)
 
-### With translation cache (faster)
+#### Debug value is needed
+
+```{.php}
+$container['debug'] = true; // or false
+```
+
+#### Define translator service
+
+```{.php}
+$container['translator'] = function () {
+    return new Translator('en');
+};
+```
+
+### For all users
+
+#### With translation cache (faster)
 
 ```{.php}
 use Saxulum\Translation\Silex\Provider\TranslationProvider;
-use Silex\Provider\TranslationServiceProvider;
 
-$app->register(new TranslationServiceProvider());
-$app->register(new TranslationProvider(), array(
+$container->register(new TranslationProvider(), array(
     'translation_cache' => '/path/to/cache'
 ));
 ```
@@ -44,46 +58,10 @@ $app->register(new TranslationProvider(), array(
 * `debug == true`: the cache file will be build at each load
 * `debug == false`: the cache file will be build if not exists, delete it if its out of sync
 
-### Without translation cache (slower)
+#### Without translation cache (slower)
 
 ```{.php}
 use Saxulum\Translation\Silex\Provider\TranslationProvider;
-use Silex\Provider\TranslationServiceProvider;
-
-$app->register(new TranslationServiceProvider());
-$app->register(new TranslationProvider());
-```
-
-## Cilex
-
-You need a service with key `translator` which implements `Symfony\Component\Translation\Translator`.
-There is the [silex][2] ones as an example.
-
-### With translation cache (faster)
-
-```{.php}
-use Saxulum\Translation\Cilex\Provider\TranslationProvider;
-
-$app['translator'] = $app->share(function(){
-    return new Translator;
-});
-
-$app->register(new TranslationProvider(), array(
-    'translation_cache' => '/path/to/cache'
-));
-```
-
-* `debug == true`: the cache file will be build at each load
-* `debug == false`: the cache file will be build if not exists, delete it if its out of sync
-
-### Without translation cache (slower)
-
-```{.php}
-use Saxulum\Translation\Cilex\Provider\TranslationProvider;
-
-$app['translator'] = $app->share(function(){
-    return new Translator;
-});
 
 $app->register(new TranslationProvider());
 ```

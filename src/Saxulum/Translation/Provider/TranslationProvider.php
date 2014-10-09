@@ -2,24 +2,26 @@
 
 namespace Saxulum\Translation\Provider;
 
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
 
-class TranslationProvider
+class TranslationProvider implements ServiceProviderInterface
 {
-    public function register(\Pimple $container)
+    public function register(Container $container)
     {
         $container['translation_cache'] = null;
 
-        $container['translation_paths'] = $container->share(function () {
+        $container['translation_paths'] = function () {
             $paths = array();
 
             return $paths;
-        });
+        };
 
-        $container['translator'] = $container->share($container->extend('translator',
+        $container['translator'] = $container->extend('translator',
             function (Translator $translator) use ($container) {
 
                 if (!is_null($container['translation_cache'])) {
@@ -35,7 +37,7 @@ class TranslationProvider
                         );
                     }
 
-                    $translationMap = require($cacheFile);
+                    $translationMap = require $cacheFile;
                 } else {
                     $translationMap = $container['translation_search']();
                 }
@@ -47,7 +49,7 @@ class TranslationProvider
 
                 return $translator;
             }
-        ));
+        );
 
         $container['translation_search'] = $container->protect(function () use ($container) {
             $translationMap = array();
