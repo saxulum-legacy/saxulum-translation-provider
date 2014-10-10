@@ -38,9 +38,20 @@ $container['debug'] = true; // or false
 ##### Define translator service
 
 ```{.php}
+use Symfony\Component\Translation\Translator;
+
 $container['translator'] = function () {
     return new Translator('en');
 };
+```
+
+Or if you load silex/silex as a dependency you can also use the TranslationServiceProvider.
+
+```{.php}
+use Silex\Provider\TranslationServiceProvider;
+
+$container['locale'] = 'en';
+$container->register(new TranslationServiceProvider());
 ```
 
 #### For all users
@@ -78,6 +89,22 @@ $container['translation_paths'] = $container->extend('translation_paths', functi
 
     return $paths;
 });
+```
+
+Usage with Twig templates
+-------------------------
+
+To get access to the `|trans` filter in Twig templates, you must
+register the translator first and then add the TwigServiceProvider from
+`silex/silex`. You will also have to require the `symfony/twig-bridge` package.
+
+```{.php}
+use Silex\Provider\TwigServiceProvider;
+
+$this->register(new TwigServiceProvider(), [
+    'twig.path'    => array(__DIR__.'/../views'),
+    'twig.options' => array('cache' => $cacheDir),
+]);
 ```
 
 [1]: https://packagist.org/packages/saxulum/saxulum-translation-provider
