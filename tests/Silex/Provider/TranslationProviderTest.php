@@ -16,11 +16,11 @@ class TranslationProviderTest extends \PHPUnit_Framework_TestCase
 
         $app->register(new TranslationServiceProvider());
         $app->register(new TranslationProvider(), array(
-            'translation_cache' => __DIR__ . '/../../../../../../cache'
+            'translation_cache' => __DIR__ . '/../../../cache'
         ));
 
         $app['translation_paths'] = $app->share($app->extend('translation_paths', function ($paths) {
-            $paths[] = __DIR__ . '/../../../../../data/';
+            $paths[] = __DIR__ . '/../../data/';
 
             return $paths;
         }));
@@ -39,7 +39,7 @@ class TranslationProviderTest extends \PHPUnit_Framework_TestCase
         $app->register(new TranslationProvider());
 
         $app['translation_paths'] = $app->share($app->extend('translation_paths', function ($paths) {
-            $paths[] = __DIR__ . '/../../../../../data/';
+            $paths[] = __DIR__ . '/../../data/';
 
             return $paths;
         }));
