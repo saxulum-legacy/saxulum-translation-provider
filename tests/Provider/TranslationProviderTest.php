@@ -18,11 +18,11 @@ class TranslationProviderTest extends \PHPUnit_Framework_TestCase
         };
 
         $container->register(new TranslationProvider(), array(
-            'translation_cache' => __DIR__ . '/../../../../../cache'
+            'translation_cache' => __DIR__ . '/../../cache'
         ));
 
         $container['translation_paths'] = $container->extend('translation_paths', function ($paths) {
-            $paths[] = __DIR__ . '/../../../../data/';
+            $paths[] = __DIR__ . '/../data/';
 
             return $paths;
         });
@@ -40,12 +40,10 @@ class TranslationProviderTest extends \PHPUnit_Framework_TestCase
             return new Translator('en');
         };
 
-        $container->register(new TranslationProvider(), array(
-            'translation_cache' => __DIR__ . '/../../../../../cache'
-        ));
+        $container->register(new TranslationProvider());
 
         $container['translation_paths'] = $container->extend('translation_paths', function ($paths) {
-            $paths[] = __DIR__ . '/../../../../data/';
+            $paths[] = __DIR__ . '/../data/';
 
             return $paths;
         });
